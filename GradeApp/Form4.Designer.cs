@@ -315,14 +315,14 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.SteelBlue;
+            this.label22.BackColor = System.Drawing.Color.White;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(75, 110);
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(51, 25);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(99, 29);
+            this.label22.Size = new System.Drawing.Size(105, 29);
             this.label22.TabIndex = 0;
-            this.label22.Text = "label22";
+            this.label22.Text = "courses";
             // 
             // Form4
             // 
