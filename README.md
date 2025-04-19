@@ -1,27 +1,28 @@
-🎓 Student Management System
+# 🎓 Student Management System
+
 This is a Student Management System built using C# and Windows Forms (WinForms). It allows administrators to manage student records easily through a graphical user interface. The application supports CRUD (Create, Read, Update, Delete) operations for student data and ensures a smooth and user-friendly experience.
 
-🔧 Features
-Add new students with full details
+## 🔧 Features
+- Add new students with full details
 
-Edit and update existing student information
+- Edit and update existing student information
 
-Delete student records
+- Delete student records
 
-View a list of all students in a tabular format
+- View a list of all students in a tabular format
 
-Search students by name or ID
+- Search students by name or ID
 
-Simple and clean Windows Forms UI
+- Simple and clean Windows Forms UI
 
-Data persistence using [e.g., SQL Server / SQLite / file storage]
+- Data persistence using sql server
 
-🛠️ Technologies Used
-C#
+## 🛠️ Technologies Used
+- C#
 
-.NET Framework / .NET (specify version, e.g., .NET 6.0)
+- .NET Framework / .NET (specify version, e.g., .NET 6.0)
 
-Windows Forms (WinForms)
+- Windows Forms (WinForms)
 
-microsoft sql server
+- microsoft sql server
 
