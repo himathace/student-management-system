@@ -26,3 +26,14 @@ This is a Student Management System built using C# and Windows Forms (WinForms).
 
 - microsoft sql server
 
+## 🚀 Getting Started
+1. Clone the repository:
+   
+git clone https://github.com/himathace/student-management-system.git
+
+2. Open the solution file (.sln) in Visual Studio.
+
+3. Restore NuGet packages (if any) and build the project.
+
+4. Run the application and start managing student data!
+
