@@ -26,7 +26,7 @@ namespace GradeApp
 
         private void label3_Click(object sender, EventArgs e)
         {
-            panel2.Visible = true;
+            
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -119,7 +119,7 @@ namespace GradeApp
 
         private void label1_Click(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -176,6 +176,21 @@ namespace GradeApp
             deletecourse.ExecuteNonQuery();
             connect.Close();
             MessageBox.Show("Data Deleted Successfully");
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = true;
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

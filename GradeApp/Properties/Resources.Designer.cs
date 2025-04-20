@@ -99,5 +99,15 @@ namespace GradeApp.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_student_glyph_black_icon_png_image_691145 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-student-glyph-black-icon-png-image_691145", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

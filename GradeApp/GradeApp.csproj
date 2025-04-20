@@ -144,5 +144,8 @@
   <ItemGroup>
     <None Include="Resources\5ccba4c3-97bb-4619-96c4-823972956cfa1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-student-glyph-black-icon-png-image_691145.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
