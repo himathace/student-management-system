@@ -64,12 +64,15 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentmanagementDataSet)).BeginInit();
@@ -82,6 +85,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.button13);
             this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button12);
             this.panel1.Controls.Add(this.button11);
@@ -89,18 +94,20 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Location = new System.Drawing.Point(0, -1);
+            this.panel1.MaximumSize = new System.Drawing.Size(232, 638);
+            this.panel1.MinimumSize = new System.Drawing.Size(78, 638);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(228, 597);
+            this.panel1.Size = new System.Drawing.Size(232, 638);
             this.panel1.TabIndex = 0;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(113, 73);
+            this.label11.Location = new System.Drawing.Point(82, 50);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(68, 20);
+            this.label11.Size = new System.Drawing.Size(85, 28);
             this.label11.TabIndex = 5;
             this.label11.Text = "ADMIN";
             // 
@@ -314,7 +321,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(228, -1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(916, 597);
+            this.panel2.Size = new System.Drawing.Size(950, 641);
             this.panel2.TabIndex = 28;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -408,47 +415,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Cources";
             // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(0, 266);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(228, 31);
-            this.button10.TabIndex = 8;
-            this.button10.Text = "Course";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(0, 343);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(228, 23);
-            this.button11.TabIndex = 9;
-            this.button11.Text = "Grades";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(-16, 403);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(244, 23);
-            this.button12.TabIndex = 10;
-            this.button12.Text = "Logout";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(-3, 189);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(231, 34);
-            this.button9.TabIndex = 7;
-            this.button9.Text = "Students";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GradeApp.Properties.Resources._5ccba4c3_97bb_4619_96c4_823972956cfa;
@@ -459,21 +425,122 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // button13
+            // 
+            this.button13.FlatAppearance.BorderSize = 0;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button13.ForeColor = System.Drawing.Color.White;
+            this.button13.Image = global::GradeApp.Properties.Resources.icons8_menu_30;
+            this.button13.Location = new System.Drawing.Point(0, 97);
+            this.button13.Name = "button13";
+            this.button13.Padding = new System.Windows.Forms.Padding(15);
+            this.button13.Size = new System.Drawing.Size(76, 60);
+            this.button13.TabIndex = 11;
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click_1);
+            // 
+            // button9
+            // 
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.ForeColor = System.Drawing.Color.White;
+            this.button9.Image = global::GradeApp.Properties.Resources.icons8_man_30;
+            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button9.Location = new System.Drawing.Point(0, 199);
+            this.button9.Name = "button9";
+            this.button9.Padding = new System.Windows.Forms.Padding(15);
+            this.button9.Size = new System.Drawing.Size(228, 60);
+            this.button9.TabIndex = 7;
+            this.button9.Text = "  Students";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.button12.FlatAppearance.BorderSize = 0;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.ForeColor = System.Drawing.Color.White;
+            this.button12.Image = global::GradeApp.Properties.Resources.icons8_logout_30;
+            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button12.Location = new System.Drawing.Point(0, 380);
+            this.button12.Name = "button12";
+            this.button12.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
+            this.button12.Size = new System.Drawing.Size(229, 50);
+            this.button12.TabIndex = 10;
+            this.button12.Text = "Logout";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.button11.FlatAppearance.BorderSize = 0;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button11.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button11.Image = global::GradeApp.Properties.Resources.icons8_grades_32;
+            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button11.Location = new System.Drawing.Point(0, 325);
+            this.button11.Name = "button11";
+            this.button11.Padding = new System.Windows.Forms.Padding(13, 6, 6, 6);
+            this.button11.Size = new System.Drawing.Size(231, 49);
+            this.button11.TabIndex = 9;
+            this.button11.Text = "Grades";
+            this.button11.UseVisualStyleBackColor = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.button10.FlatAppearance.BorderSize = 0;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.ForeColor = System.Drawing.Color.White;
+            this.button10.Image = global::GradeApp.Properties.Resources.icons8_book_30;
+            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button10.Location = new System.Drawing.Point(0, 265);
+            this.button10.Name = "button10";
+            this.button10.Padding = new System.Windows.Forms.Padding(15);
+            this.button10.Size = new System.Drawing.Size(231, 54);
+            this.button10.TabIndex = 8;
+            this.button10.Text = "Course";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::GradeApp.Properties.Resources._88f60670_9a50_4642_82dc_3e5c378ec349;
-            this.pictureBox2.Location = new System.Drawing.Point(33, 67);
+            this.pictureBox2.Image = global::GradeApp.Properties.Resources.icons8_user_30;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 36);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(46, 42);
+            this.pictureBox2.Size = new System.Drawing.Size(73, 42);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(83, 115);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 23);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Menu";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.sidebar);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1144, 595);
+            this.ClientSize = new System.Drawing.Size(1177, 638);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox4);
@@ -498,6 +565,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.panel1.ResumeLayout(false);
@@ -557,5 +625,8 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

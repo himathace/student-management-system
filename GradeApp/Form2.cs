@@ -26,12 +26,12 @@ namespace GradeApp
 
         private void label3_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -44,14 +44,14 @@ namespace GradeApp
         {
 
             con.Open();
-            SqlCommand cmd= new SqlCommand("insert into addstudents (username,id,telephone,address,gender,department,dob) values(@username,@id,@telephone,@address,@gender,@department,@dob)", con);
+            SqlCommand cmd = new SqlCommand("insert into addstudents (username,id,telephone,address,gender,department,dob) values(@username,@id,@telephone,@address,@gender,@department,@dob)", con);
             cmd.Parameters.AddWithValue("@username", textBox1.Text);
             cmd.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
             cmd.Parameters.AddWithValue("@telephone", textBox3.Text);
             cmd.Parameters.AddWithValue("@address", textBox4.Text);
             cmd.Parameters.AddWithValue("@gender", comboBox1.Text);
             cmd.Parameters.AddWithValue("@department", comboBox3.Text);
-            cmd.Parameters.AddWithValue("@dob", dateTimePicker1.Value);  
+            cmd.Parameters.AddWithValue("@dob", dateTimePicker1.Value);
             cmd.ExecuteNonQuery();
             MessageBox.Show("Data Inserted Successfully");
             con.Close();
@@ -69,7 +69,7 @@ namespace GradeApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox1.Text=string.Empty;
+            textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
             textBox3.Text = string.Empty;
             textBox4.Text = string.Empty;
@@ -81,7 +81,7 @@ namespace GradeApp
         private void button4_Click(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand update= new SqlCommand("update addstudents set username=@username,telephone=@telephone,address=@address,gender=@gender,department=@department,dob=@dob where id=@id",con);
+            SqlCommand update = new SqlCommand("update addstudents set username=@username,telephone=@telephone,address=@address,gender=@gender,department=@department,dob=@dob where id=@id", con);
             update.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
             update.Parameters.AddWithValue("@username", textBox1.Text);
             update.Parameters.AddWithValue("@telephone", textBox3.Text);
@@ -114,12 +114,12 @@ namespace GradeApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -134,15 +134,15 @@ namespace GradeApp
 
         private void button6_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
-        SqlConnection connect= new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True");
+        SqlConnection connect = new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True");
         private void button6_Click_1(object sender, EventArgs e)
         {
             connect.Open();
@@ -171,7 +171,7 @@ namespace GradeApp
         private void button8_Click_1(object sender, EventArgs e)
         {
             connect.Open();
-            SqlCommand deletecourse=new SqlCommand("delete from course where id=@id", connect);
+            SqlCommand deletecourse = new SqlCommand("delete from course where id=@id", connect);
             deletecourse.Parameters.AddWithValue("@id", int.Parse(textBox6.Text));
             deletecourse.ExecuteNonQuery();
             connect.Close();
@@ -191,6 +191,46 @@ namespace GradeApp
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        bool sidebarexpand;
+
+        private void sidebar(object sender, EventArgs e)
+        {
+            if (sidebarexpand)
+            {
+                panel1.Width -= 10;
+                if (panel1.Width == panel1.MinimumSize.Width)
+                {
+                    sidebarexpand = false;
+                    timer1.Stop();
+                }
+
+            }
+            else
+            {
+                panel1.Width += 10;
+                if (panel1.Width == panel1.MaximumSize.Width)
+                {
+                    sidebarexpand = true;
+                    timer1.Stop();
+                }
+            }
+        }
+
+        private void button13_Click_1(object sender, EventArgs e)
+        {
+            timer1.Start();
         }
     }
 }
