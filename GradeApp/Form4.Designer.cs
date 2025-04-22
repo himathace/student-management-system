@@ -53,6 +53,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -61,6 +62,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -79,7 +81,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(49, 476);
+            this.label6.Location = new System.Drawing.Point(49, 486);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(122, 32);
             this.label6.TabIndex = 6;
@@ -90,7 +92,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(49, 410);
+            this.label5.Location = new System.Drawing.Point(49, 421);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 32);
             this.label5.TabIndex = 5;
@@ -101,7 +103,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(52, 352);
+            this.label4.Location = new System.Drawing.Point(54, 361);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 32);
             this.label4.TabIndex = 4;
@@ -123,7 +125,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(54, 290);
+            this.label3.Location = new System.Drawing.Point(57, 303);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 32);
             this.label3.TabIndex = 2;
@@ -324,6 +326,17 @@
             this.label22.TabIndex = 0;
             this.label22.Text = "courses";
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.White;
+            this.label23.Location = new System.Drawing.Point(25, 234);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(165, 32);
+            this.label23.TabIndex = 7;
+            this.label23.Text = "DashBoard";
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -386,5 +399,6 @@
         public System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
     }
 }

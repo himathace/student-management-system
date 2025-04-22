@@ -22,6 +22,9 @@ namespace GradeApp
         {
             binddata();
             panel2.Visible = false;
+
+
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -181,10 +184,13 @@ namespace GradeApp
         private void button9_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
+            
+           
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
+            
             panel2.Visible = true;
         }
 
@@ -202,6 +208,8 @@ namespace GradeApp
         {
 
         }
+
+        // resizable side bar
 
         bool sidebarexpand;
 
@@ -231,6 +239,21 @@ namespace GradeApp
         private void button13_Click_1(object sender, EventArgs e)
         {
             timer1.Start();
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+         
+            panel2.Visible = false;
+
+
+
+
         }
     }
 }
