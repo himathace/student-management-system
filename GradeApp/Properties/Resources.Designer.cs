@@ -133,6 +133,26 @@ namespace GradeApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_dashboard_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-dashboard-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_dashboard_301 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-dashboard-301", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_grades_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-grades-32", resourceCulture);

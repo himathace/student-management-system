@@ -18,11 +18,54 @@ namespace GradeApp
             InitializeComponent();
         }
 
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True"); // connect to databse studentmanagement
         private void Form2_Load(object sender, EventArgs e)
         {
             binddata();
             panel2.Visible = false;
+            panel3.Visible = false;
 
+            
+            con.Open();
+            SqlCommand malecount=new SqlCommand("select count(*) from addstudents where gender='Male'",con);// get the number of rows where gender column equal to male
+            SqlCommand femalecount=new SqlCommand("select count(*) from addstudents where gender='Female'",con);// get the number of rows where gender column equal to female
+            int nomale=(int)malecount.ExecuteScalar(); // convert to int
+            int nofemale=(int)femalecount.ExecuteScalar();
+            con.Close();
+
+            // add data to chart1
+            chart1.Series["Series1"].Points.AddXY("Male", nomale);
+            chart1.Series["Series1"].Points.AddXY("Female", nofemale);
+
+
+
+
+            con.Open();
+            SqlCommand countcompute= new SqlCommand("select count(*) from addstudents where department='coumputing'", con);// get the number of rows where department column equal to Computer Science
+            SqlCommand countbusiness = new SqlCommand("select count(*) from addstudents where department='busness'", con);// get the number of rows where department column equal to Business
+            SqlCommand countengineering = new SqlCommand("select count(*) from addstudents where department='engeniring'", con);// get the number of rows where department column equal to Engineering
+            SqlCommand countmedical = new SqlCommand("select count(*) from addstudents where department='medical'", con);// get the number of rows where department column equal to Medical
+            
+            int nocumputing = (int)countcompute.ExecuteScalar(); // convert to int
+            int nobusiness = (int)countbusiness.ExecuteScalar();
+            int noengineering = (int)countengineering.ExecuteScalar();
+            int nomedical = (int)countmedical.ExecuteScalar();
+            con.Close();
+
+            // add data to chart2
+
+            chart2.Series["Department"].Points.AddXY("Computing", nocumputing);
+            chart2.Series["Department"].Points.AddXY("Business", nobusiness);
+            chart2.Series["Department"].Points.AddXY("Engineering", noengineering);
+            chart2.Series["Department"].Points.AddXY("Medical", nomedical);
+
+
+            // get number of rows in addstudents table(total number of students)
+            con.Open();
+            SqlCommand count = new SqlCommand("select count(*) from addstudents", con);
+            string countstring = count.ExecuteScalar().ToString(); // execute queary and convert to string
+            con.Close();
+            label17.Text = countstring; // display number of rows in label17
 
 
         }
@@ -42,10 +85,9 @@ namespace GradeApp
 
         }
 
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True");
         private void button2_Click(object sender, EventArgs e)
         {
-
+            // insert user information to table addstudents
             con.Open();
             SqlCommand cmd = new SqlCommand("insert into addstudents (username,id,telephone,address,gender,department,dob) values(@username,@id,@telephone,@address,@gender,@department,@dob)", con);
             cmd.Parameters.AddWithValue("@username", textBox1.Text);
@@ -72,6 +114,7 @@ namespace GradeApp
 
         private void button3_Click(object sender, EventArgs e)
         {
+            // clear userinput fields
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
             textBox3.Text = string.Empty;
@@ -83,6 +126,7 @@ namespace GradeApp
 
         private void button4_Click(object sender, EventArgs e)
         {
+            // update user information in addstudents table
             con.Open();
             SqlCommand update = new SqlCommand("update addstudents set username=@username,telephone=@telephone,address=@address,gender=@gender,department=@department,dob=@dob where id=@id", con);
             update.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
@@ -101,6 +145,7 @@ namespace GradeApp
 
         private void button5_Click(object sender, EventArgs e)
         {
+            //delete userinformation in addstudents table
             con.Open();
             SqlCommand delete = new SqlCommand("delete from addstudents where id=@id", con);
             delete.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
@@ -142,48 +187,54 @@ namespace GradeApp
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-
+            
+            
         }
 
-        SqlConnection connect = new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True");
+        //SqlConnection connect = new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True");
         private void button6_Click_1(object sender, EventArgs e)
         {
-            connect.Open();
-            SqlCommand cmd = new SqlCommand("insert into course (username,id,course) values(@username,@id,@course)", connect);
+            // add course information to course table
+            con.Open();
+            SqlCommand cmd = new SqlCommand("insert into course (username,id,course) values(@username,@id,@course)", con);
             cmd.Parameters.AddWithValue("@username", textBox5.Text);
             cmd.Parameters.AddWithValue("@id", int.Parse(textBox6.Text));
             cmd.Parameters.AddWithValue("@course", textBox7.Text);
             cmd.ExecuteNonQuery();
-            connect.Close();
+            con.Close();
             MessageBox.Show("Data Inserted Successfully");
         }
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-            connect.Open();
-            SqlCommand courseupdate = new SqlCommand("update course set username=@username,course=@course where id=@id", connect);
+            //update course information in course table
+            con.Open();
+            SqlCommand courseupdate = new SqlCommand("update course set username=@username,course=@course where id=@id", con);
             courseupdate.Parameters.AddWithValue("@id", int.Parse(textBox6.Text));
             courseupdate.Parameters.AddWithValue("@username", textBox5.Text);
             courseupdate.Parameters.AddWithValue("@course", textBox7.Text);
             courseupdate.ExecuteNonQuery();
-            connect.Close();
+            con.Close();
             MessageBox.Show("Data Updated Successfully");
 
         }
 
         private void button8_Click_1(object sender, EventArgs e)
         {
-            connect.Open();
-            SqlCommand deletecourse = new SqlCommand("delete from course where id=@id", connect);
+            //delete course information in course information
+            con.Open();
+            SqlCommand deletecourse = new SqlCommand("delete from course where id=@id", con);
             deletecourse.Parameters.AddWithValue("@id", int.Parse(textBox6.Text));
             deletecourse.ExecuteNonQuery();
-            connect.Close();
+            con.Close();
             MessageBox.Show("Data Deleted Successfully");
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            
+            panel3.Visible=true;
+            
             
            
         }
@@ -192,6 +243,7 @@ namespace GradeApp
         {
             
             panel2.Visible = true;
+            
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -248,11 +300,19 @@ namespace GradeApp
 
         private void button14_Click(object sender, EventArgs e)
         {
-         
             panel2.Visible = false;
+            panel3.Visible = false;
+         
+            
+            
 
 
 
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
 
         }
     }
