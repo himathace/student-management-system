@@ -44,14 +44,14 @@ namespace GradeApp
 
         }
 
+        SqlConnection newconn=new SqlConnection(@"Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True");
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             
-            SqlConnection newconn=new SqlConnection(@"Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True");
             newconn.Open();
 
             SqlCommand find= new SqlCommand("select count(*) from course where id=@id", newconn); // get number of rows equal to id
-            find.Parameters.AddWithValue("@id", userid); // insert userid into the query
+            find.Parameters.AddWithValue("@id", userid);
 
             int count= (int)find.ExecuteScalar(); // store the number of rows in a int variable
 
@@ -60,24 +60,22 @@ namespace GradeApp
                 SqlCommand cmd = new SqlCommand("select course from course where id=@id", newconn);
                 cmd.Parameters.AddWithValue("@id", userid);
 
-                //label22.Text = cmd.ExecuteScalar().ToString();
+                SqlDataReader reader = cmd.ExecuteReader(); // execute the command and store the result in a reader
 
-                string coursename = cmd.ExecuteScalar().ToString(); // save course to string coursename 
-                string[] newsplit = coursename.Split(' '); // split the string intto array of strings by space(' ')
                 Point newpoint = new Point(50, 100); // set the location of the first label
 
-                foreach(string value in newsplit) // for each course in array create separate label 
+                while (reader.Read())//iterate through all rows
                 {
+                    string coursename = reader["course"].ToString(); // get the course name from the reader
                     Label displaylabel = new Label();
                     displaylabel.Location = newpoint;
-                    displaylabel.Text = value;
+                    displaylabel.Text = coursename;
                     displaylabel.AutoSize = true;
                     displaylabel.ForeColor = Color.White;
                     displaylabel.BackColor = Color.SteelBlue;
                     displaylabel.Font = new Font("Arial", 18, FontStyle.Bold);
                     this.panel2.Controls.Add(displaylabel); // display the label on the panel
                     newpoint.Y += 50; // move down for next label
-
                 }
 
 

@@ -189,5 +189,23 @@
   <ItemGroup>
     <None Include="Resources\icons8-dashboard-301.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-username-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-username-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-password-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-username-502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-username-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-username-100.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

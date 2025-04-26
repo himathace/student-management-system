@@ -18,14 +18,23 @@ namespace GradeApp
             InitializeComponent();
         }
 
+        private void showpanel(Panel paneltoshow)
+        {
+            paneltoshow.Visible = true;
+        }
+
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True"); // connect to databse studentmanagement
         private void Form2_Load(object sender, EventArgs e)
         {
             binddata();
+
             panel2.Visible = false;
             panel3.Visible = false;
+            panel7.Visible = false;
 
-            
+
+
+
             con.Open();
             SqlCommand malecount=new SqlCommand("select count(*) from addstudents where gender='Male'",con);// get the number of rows where gender column equal to male
             SqlCommand femalecount=new SqlCommand("select count(*) from addstudents where gender='Female'",con);// get the number of rows where gender column equal to female
@@ -232,17 +241,19 @@ namespace GradeApp
 
         private void button9_Click(object sender, EventArgs e)
         {
-            
-            panel3.Visible=true;
+            showpanel(panel3);
             
             
            
         }
 
+
+
         private void button10_Click(object sender, EventArgs e)
         {
-            
-            panel2.Visible = true;
+            showpanel(panel2);
+
+
             
         }
 
@@ -258,7 +269,7 @@ namespace GradeApp
 
         private void button12_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         // resizable side bar
@@ -302,6 +313,7 @@ namespace GradeApp
         {
             panel2.Visible = false;
             panel3.Visible = false;
+            panel7.Visible=false;
          
             
             
@@ -312,6 +324,47 @@ namespace GradeApp
         }
 
         private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand grades = new SqlCommand("update  course set grade=@grade where username=@username and id=@id and course=@course ",con);
+            SqlCommand gpa = new SqlCommand("update addstudents set gpa=@gpa where username=@username and id=@id", con);
+
+            grades.Parameters.AddWithValue("@grade",textBox11.Text);
+            grades.Parameters.AddWithValue("@username", textBox10.Text);
+            grades.Parameters.AddWithValue("@id",int.Parse(textBox9.Text));
+            grades.Parameters.AddWithValue("@course",textBox8.Text);
+
+            gpa.Parameters.AddWithValue("@gpa", textBox12.Text);
+            gpa.Parameters.AddWithValue("@username",textBox10.Text);
+            gpa.Parameters.AddWithValue("@id", int.Parse(textBox9.Text));
+
+            grades.ExecuteNonQuery();
+            gpa.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("data updated");
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            showpanel(panel7);
+        }
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
         {
 
         }
