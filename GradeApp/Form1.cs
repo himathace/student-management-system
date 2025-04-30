@@ -32,7 +32,15 @@ namespace GradeApp
             }
             else
             {
-                MessageBox.Show("Invalid username or password");
+                Label massage = new Label(); // create a new label
+                Point newerrorpoint = new Point(70, 450);
+                massage.Text = "invalid Username Or Password";
+                massage.Font = new Font("Arial", 10, FontStyle.Bold);
+                massage.ForeColor = Color.Red;
+                massage.Location = newerrorpoint;// set posssion for the label
+                massage.AutoSize = true;// ensure the label resizes to fit the text
+
+                this.Controls.Add(massage); // add the label to the form
 
             }
         }
@@ -68,6 +76,11 @@ namespace GradeApp
         {
             textBox2.Text = "";
             textBox2.UseSystemPasswordChar = true;// show password as dots
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

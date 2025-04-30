@@ -207,5 +207,26 @@
   <ItemGroup>
     <None Include="Resources\icons8-username-100.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-username-90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-username-90 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-id-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-username-90 %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\overlay.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\demo_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21421.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

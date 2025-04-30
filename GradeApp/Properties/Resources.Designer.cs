@@ -63,6 +63,16 @@ namespace GradeApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _21421 {
+            get {
+                object obj = ResourceManager.GetObject("21421", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _5ccba4c3_97bb_4619_96c4_823972956cfa {
             get {
                 object obj = ResourceManager.GetObject("5ccba4c3-97bb-4619-96c4-823972956cfa", resourceCulture);
@@ -96,6 +106,16 @@ namespace GradeApp.Properties {
         internal static System.Drawing.Bitmap _88f60670_9a50_4642_82dc_3e5c378ec349 {
             get {
                 object obj = ResourceManager.GetObject("88f60670-9a50-4642-82dc-3e5c378ec349", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap demo_image {
+            get {
+                object obj = ResourceManager.GetObject("demo_image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +186,16 @@ namespace GradeApp.Properties {
         internal static System.Drawing.Bitmap icons8_grades_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-grades-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_id_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-id-30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -266,6 +296,46 @@ namespace GradeApp.Properties {
         internal static System.Drawing.Bitmap icons8_username_502 {
             get {
                 object obj = ResourceManager.GetObject("icons8-username-502", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_username_90 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-username-90", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_username_90__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-username-90 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_username_90__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-username-90 (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap overlay {
+            get {
+                object obj = ResourceManager.GetObject("overlay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

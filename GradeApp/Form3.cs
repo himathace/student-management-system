@@ -47,17 +47,43 @@ namespace GradeApp
                     form4.label19.Text=srd.GetValue(5).ToString();
                     form4.label20.Text=srd.GetValue(6).ToString();
                 }
+                this.Close();
 
             }
             else
             {
-                MessageBox.Show("Invalid username or id");
+                
+                Label massage= new Label(); // create a new label
+                Point newerrorpoint= new Point(70,400); 
+                massage.Text = "invalid Username or ID";
+                massage.Font = new Font("Arial", 12, FontStyle.Bold);
+                massage.ForeColor=Color.Red;
+                massage.Location=newerrorpoint;// set posssion for the label
+                massage.AutoSize = true;// ensure the label resizes to fit the text
+
+                this.Controls.Add(massage); // add the label to the form
+
             }
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void user(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+        }
+
+        private void entid(object sender, EventArgs e)
+        {
+            textBox2.Text = "";
         }
     }
 }
