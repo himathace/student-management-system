@@ -55,7 +55,9 @@ namespace GradeApp
                 
                 Label massage= new Label(); // create a new label
                 Point newerrorpoint= new Point(70,400); 
-                massage.Text = "invalid Username or ID";
+                massage.Text = "invalid username or ID";
+                panel1.BackColor = Color.Red;
+                panel2.BackColor = Color.Red;
                 massage.Font = new Font("Arial", 12, FontStyle.Bold);
                 massage.ForeColor=Color.Red;
                 massage.Location=newerrorpoint;// set posssion for the label
@@ -79,11 +81,13 @@ namespace GradeApp
         private void user(object sender, EventArgs e)
         {
             textBox1.Text = "";
+            panel1.BackColor=Color.Black;
         }
 
         private void entid(object sender, EventArgs e)
         {
             textBox2.Text = "";
+            panel2.BackColor = Color.Black; 
         }
     }
 }

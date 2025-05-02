@@ -28,11 +28,11 @@ namespace GradeApp
         {
             binddata();
 
+            panel1.Size = new Size(59, 638);
+
             panel2.Visible = false;
             panel3.Visible = false;
             panel7.Visible = false;
-
-
 
 
             con.Open();
@@ -241,20 +241,16 @@ namespace GradeApp
 
         private void button9_Click(object sender, EventArgs e)
         {
+ 
             showpanel(panel3);
-            
-            
-           
+
         }
 
 
 
         private void button10_Click(object sender, EventArgs e)
         {
-            showpanel(panel2);
-
-
-            
+            showpanel(panel2); 
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -306,6 +302,9 @@ namespace GradeApp
 
         private void label13_Click(object sender, EventArgs e)
         {
+            panel2.Visible = false;
+            panel3.Visible = false;
+            panel7.Visible = false;
 
         }
 
@@ -313,14 +312,7 @@ namespace GradeApp
         {
             panel2.Visible = false;
             panel3.Visible = false;
-            panel7.Visible=false;
-         
-            
-            
-
-
-
-
+            panel7.Visible =false;
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -367,6 +359,36 @@ namespace GradeApp
         private void panel7_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        bool showbutton = false;
+        private void displaybuttons(object sender, EventArgs e)
+        {
+            if (!showbutton)
+            {
+                panel8.Height += 10;
+                panel9.Location = new Point(panel9.Location.X,panel8.Location.Y+panel8.Height);
+                if (panel8.Height == panel8.MaximumSize.Height)
+                {
+                    showbutton = true;
+                    timer2.Stop();
+                }
+            }
+            else
+            {
+                panel8.Height -= 10;
+                panel9.Location = new Point(panel9.Location.X,panel8.Location.Y+panel8.Height);
+                if (panel8.Height == panel8.MinimumSize.Height)
+                {
+                    showbutton = false;
+                    timer2.Stop();
+                }
+            }
+        }
+
+        private void button16_Click_1(object sender, EventArgs e)
+        {
+            timer2.Start();
         }
     }
 }

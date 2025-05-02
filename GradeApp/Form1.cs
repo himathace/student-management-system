@@ -24,7 +24,7 @@ namespace GradeApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text=="admin"&&textBox2.Text=="1234")
+            if (textBox1.Text=="admin" || textBox1.Text=="ADMIN" && textBox2.Text=="1234")
             {
                 Form2 form = new Form2();
                 form.Show();
@@ -34,7 +34,9 @@ namespace GradeApp
             {
                 Label massage = new Label(); // create a new label
                 Point newerrorpoint = new Point(70, 450);
-                massage.Text = "invalid Username Or Password";
+                massage.Text = "invalid username or password";
+                panel1.BackColor = Color.Red;
+                panel2.BackColor = Color.Red;
                 massage.Font = new Font("Arial", 10, FontStyle.Bold);
                 massage.ForeColor = Color.Red;
                 massage.Location = newerrorpoint;// set posssion for the label
@@ -70,12 +72,15 @@ namespace GradeApp
         private void input(object sender, EventArgs e) // when user click on text box
         {
             textBox1.Text = "";
+            panel1.BackColor = Color.Black;
+            
         }
 
         private void passenter(object sender, EventArgs e) // user click on password box
         {
             textBox2.Text = "";
             textBox2.UseSystemPasswordChar = true;// show password as dots
+            panel2.BackColor = Color.Black;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
