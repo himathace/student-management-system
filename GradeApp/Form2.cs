@@ -16,6 +16,8 @@ namespace GradeApp
         public Form2()
         {
             InitializeComponent();
+            
+
         }
 
         private void showpanel(Panel paneltoshow)
@@ -33,6 +35,7 @@ namespace GradeApp
             panel2.Visible = false;
             panel3.Visible = false;
             panel7.Visible = false;
+            panel10.Visible = false;
 
 
             con.Open();
@@ -119,6 +122,7 @@ namespace GradeApp
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView2.DataSource = dt;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -313,6 +317,7 @@ namespace GradeApp
             panel2.Visible = false;
             panel3.Visible = false;
             panel7.Visible =false;
+            panel10.Visible=false;
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -389,6 +394,74 @@ namespace GradeApp
         private void button16_Click_1(object sender, EventArgs e)
         {
             timer2.Start();
+        }
+
+        void searchbinddata()
+        {
+            con.Open();
+            SqlCommand search = new SqlCommand("select * from addstudents where id=@id or username=@username", con);
+            if (int.TryParse(textBox13.Text, out int id))
+            {
+                search.Parameters.AddWithValue("@id", id);
+            }
+            else
+            {
+                search.Parameters.AddWithValue("@id", 0);
+            }
+            search.Parameters.AddWithValue("@username", textBox13.Text);
+            search.ExecuteNonQuery();
+            con.Close();
+            SqlDataAdapter sda = new SqlDataAdapter(search);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            dataGridView2.DataSource = dt;
+            onlyblind = true;   
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            searchbinddata();
+
+        }
+
+        public bool onlyblind = false;
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+            if (!onlyblind)
+            {
+                binddata();
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            showpanel(panel10);
+        }
+
+
+        private void inpp(object sender, EventArgs e)
+        {
+            textBox13.Text = "";
+            onlyblind = false;
+
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void paintrows(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if(e.RowIndex % 2 == 0)
+            {
+                dataGridView2.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+            }
+            else
+            {
+                dataGridView2.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Gray;
+            }
         }
     }
 }
