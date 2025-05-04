@@ -123,6 +123,8 @@ namespace GradeApp
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
             dataGridView2.DataSource = dt;
+            dataGridView1.RowHeadersVisible = false; // remove row header
+            dataGridView2.RowHeadersVisible = false; // remove row header
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -415,7 +417,8 @@ namespace GradeApp
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView2.DataSource = dt;
-            onlyblind = true;   
+            onlyblind = true;
+            dataGridView2.RowHeadersVisible = false; //remove row header(first select row in datagridview)
         }
 
         private void button18_Click(object sender, EventArgs e)

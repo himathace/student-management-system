@@ -21,12 +21,12 @@ namespace GradeApp
 
         private void label3_Click(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            //panel2.Visible = false;
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            //panel2.Visible = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace GradeApp
 
         private void label4_Click(object sender, EventArgs e)
         {
-            panel2.Visible=true;
+            //panel2.Visible=true;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -96,6 +96,79 @@ namespace GradeApp
             }
             newconn.Close();
 
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+            newconn.Open();
+
+            SqlCommand find = new SqlCommand("select count(*) from course where id=@id", newconn); 
+            find.Parameters.AddWithValue("@id", userid);
+
+            int count = (int)find.ExecuteScalar(); // store the number of rows in a int variable
+
+            if (count > 0) // check if there are rows in the table
+            {
+                SqlCommand cmd = new SqlCommand("select course,grade from course where id=@id", newconn);
+                cmd.Parameters.AddWithValue("@id", userid);
+
+                SqlDataReader reader = cmd.ExecuteReader(); // execute the command and store the result in a reader
+
+
+                Point newpoint = new Point(50, 100); // set the location of the first label
+                Point newgradepoint=new Point(150,100); //set the location to first grade label
+
+                while (reader.Read())//iterate through all rows
+                {
+                    string coursename = reader["course"].ToString();
+                    string studentsgrade = reader["grade"].ToString();
+
+                    Label displaylabel = new Label();
+                    Label displaygrade = new Label();
+
+                    displaylabel.Location = newpoint;
+                    displaylabel.Text = coursename;
+                    displaylabel.AutoSize = true;
+                    displaylabel.ForeColor = Color.White;
+                    displaylabel.BackColor = Color.SteelBlue;
+                    displaylabel.Font = new Font("Arial", 18, FontStyle.Bold);
+                    this.panel3.Controls.Add(displaylabel); // display the label on the panel
+                    newpoint.Y += 50; // move down for next label
+
+                    displaygrade.Location = newgradepoint;
+                    displaygrade.Text = studentsgrade;
+                    displaygrade.AutoSize = true;
+                    displaygrade.ForeColor = Color.Black;
+                    displaygrade.Font = new Font("Arial", 18, FontStyle.Bold);
+                    this.panel3.Controls.Add(displaygrade);
+                    newgradepoint.Y += 50; 
+                }
+
+
+
+            }
+            else
+            {
+                // if no course is found create a label called dislabel1 and display a message
+                Label dislabel = new Label();
+                Point newpoint = new Point(30, 80);
+                dislabel.Location = newpoint;
+                dislabel.Text = "No grades found";
+                dislabel.AutoSize = true;
+                dislabel.ForeColor = Color.Red;
+                dislabel.Font = new Font("Arial", 12, FontStyle.Bold);
+                this.panel3.Controls.Add(dislabel); // display the label on the panel
+
+            }
+            newconn.Close();
+
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
