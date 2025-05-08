@@ -35,7 +35,10 @@ namespace GradeApp
                 form4.Show();
                 idnumber = int.Parse(textBox2.Text);
                 form4.label1.Text = textBox1.Text;
+
                 form4.userid=int.Parse(textBox2.Text);// access the userid variable in form4
+                form4.username = textBox1.Text; // acces the username variable in form4
+
                 SqlDataReader srd=display.ExecuteReader();
                 while (srd.Read())
                 {
