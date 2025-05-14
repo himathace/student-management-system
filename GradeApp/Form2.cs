@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,22 +98,107 @@ namespace GradeApp
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // add students
         {
-            // insert user information to table addstudents
-            con.Open();
-            SqlCommand cmd = new SqlCommand("insert into addstudents (username,id,telephone,address,gender,department,dob) values(@username,@id,@telephone,@address,@gender,@department,@dob)", con);
-            cmd.Parameters.AddWithValue("@username", textBox1.Text);
-            cmd.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
-            cmd.Parameters.AddWithValue("@telephone", textBox3.Text);
-            cmd.Parameters.AddWithValue("@address", textBox4.Text);
-            cmd.Parameters.AddWithValue("@gender", comboBox1.Text);
-            cmd.Parameters.AddWithValue("@department", comboBox3.Text);
-            cmd.Parameters.AddWithValue("@dob", dateTimePicker1.Value);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Data Inserted Successfully");
-            con.Close();
-            binddata();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("insert into addstudents (username,id,telephone,address,gender,department,dob) values(@username,@id,@telephone,@address,@gender,@department,@dob)", con);
+                
+                //check if field is empty
+                if (string.IsNullOrWhiteSpace(textBox1.Text))
+                {
+                    label5.ForeColor = Color.Red;
+                    throw new Exception("Field cannot be empty");
+                    
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@username", textBox1.Text);
+                }
+
+                // check field is empty
+                if (string.IsNullOrWhiteSpace(textBox2.Text))
+                {
+                    label6.ForeColor = Color.Red;
+                    throw new Exception("Field cannot be empty");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
+                }
+
+
+                if(textBox3.Text.Length != 10 )
+                {
+                    label12.ForeColor= Color.Red;
+                    throw new Exception("Phone number should less than 10 characters");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@telephone", int.Parse(textBox3.Text));
+                }
+
+                if(string.IsNullOrWhiteSpace(textBox4.Text))
+                {
+                    label7.ForeColor= Color.Red;
+                    throw new Exception("Address cannot be empty");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@address", textBox4.Text);
+                }
+
+                if (string.IsNullOrEmpty(comboBox1.Text))
+                {
+                    label9.ForeColor=Color.Red;
+                    throw new Exception("Gender cannot be empty");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@gender", comboBox1.Text);
+                }
+
+
+                if (string.IsNullOrEmpty(comboBox3.Text))
+                {
+                    label10.ForeColor= Color.Red;
+                    throw new Exception("Department cannot be empty");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@department", comboBox3.Text);
+                }
+
+                if (dateTimePicker1.Value == null)
+                {
+                    label8.ForeColor= Color.Red;
+                    throw new Exception("DOB cannot be empty!");
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@dob", dateTimePicker1.Value);
+                }
+
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Data Inserted Successfully");
+
+            }
+            catch(FormatException) 
+            {
+                MessageBox.Show("Invalid DataType");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+                binddata();
+            }
+            
         }
 
         void binddata()
@@ -417,24 +503,13 @@ namespace GradeApp
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView2.DataSource = dt;
-            onlyblind = true;
             dataGridView2.RowHeadersVisible = false; //remove row header(first select row in datagridview)  
         }
 
-        private void button18_Click(object sender, EventArgs e)
-        {
-            searchbinddata();
-
-        }
-
-        public bool onlyblind = false;
 
         private void panel10_Paint(object sender, PaintEventArgs e)
         {
-            if (!onlyblind)
-            {
-                binddata();
-            }
+
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -446,7 +521,6 @@ namespace GradeApp
         private void inpp(object sender, EventArgs e)
         {
             textBox13.Text = "";
-            onlyblind = false;
 
         }
 
@@ -463,8 +537,230 @@ namespace GradeApp
             }
             else
             {
-                dataGridView2.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Gray;
+                dataGridView2.Rows[e.RowIndex].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+
             }
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel12_Paint(object sender, PaintEventArgs e)
+        {
+            RoundButtonCorners(button1, 8);
+            RoundButtonCorners(button2, 8);
+            RoundButtonCorners(button3, 8);
+            RoundButtonCorners(button4, 8);
+            RoundButtonCorners(button5, 8);
+
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel12.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel12.Region = new Region(path);
+        }
+
+        public void RoundButtonCorners(Button btn, int radius)  // round coners in buttons
+        {
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = new Rectangle(0, 0, btn.Width, btn.Height);
+            int diameter = radius * 2;
+
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // top-left
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // top-right
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // bottom-right
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // bottom-left
+            path.CloseAllFigures();
+
+            btn.Region = new Region(path);
+        }
+
+        private void clickusername(object sender, EventArgs e)
+        {
+            label5.Text = "UserName";
+            label5.ForeColor=Color.FromArgb(35,40,45);
+        }
+
+        private void textBox13_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox13.Text))
+            {
+                binddata();
+            }
+            else
+            {
+                searchbinddata();
+            }
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel13_Paint(object sender, PaintEventArgs e)
+        {
+            binddata();
+
+            int cornerRadius = 14; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel13.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel13.Region = new Region(path);
+        }
+
+        private void clickid(object sender, EventArgs e)
+        {
+            label6.ForeColor = Color.FromArgb(35, 40, 45);
+        }
+
+        private void clicktele(object sender, EventArgs e)
+        {
+            label12.ForeColor = Color.FromArgb(35, 40, 45);
+        }
+
+        private void clickaddress(object sender, EventArgs e)
+        {
+            label7.ForeColor = Color.FromArgb(35, 40, 45);
+        }
+
+        private void clickgender(object sender, EventArgs e)
+        {
+            label9.ForeColor = Color.FromArgb(35, 40, 45);
+        }
+
+        private void clickdep(object sender, EventArgs e)
+        {
+            label10.ForeColor = Color.FromArgb(35, 40, 45);
+        }
+
+        private void dobclick(object sender, EventArgs e)
+        {
+            label8.ForeColor = Color.FromArgb(35, 40, 45);
+        }
+
+        private void button19_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void paintheading(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+
+        }
+
+        private void paintdata1(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex % 2 == 0)
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+            }
+            else
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+
+            }
+        }
+
+        private void panel14_Paint(object sender, PaintEventArgs e) // round coners in search bar
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel14.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel14.Region = new Region(path);
+        }
+
+        private void panel15_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel15.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel15.Region = new Region(path);
+        }
+
+        private void panel16_Paint(object sender, PaintEventArgs e)
+        {
+            RoundButtonCorners(button6, 8); // round button coners
+            RoundButtonCorners(button7, 8);
+            RoundButtonCorners(button8, 8);
+
+
+
+            int cornerRadius = 14; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel16.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel16.Region = new Region(path);
+
+        }
+
+        private void panel17_Paint(object sender, PaintEventArgs e)
+        {
+            RoundButtonCorners(button17, 8);
+
+            int cornerRadius = 14; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel17.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel17.Region = new Region(path);
         }
     }
 }

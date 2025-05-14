@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,18 +56,9 @@ namespace GradeApp
             }
             else
             {
+                MessageBox.Show("invalid username or id");
                 
-                Label massage= new Label(); // create a new label
-                Point newerrorpoint= new Point(70,400); 
-                massage.Text = "invalid username or ID";
-                panel1.BackColor = Color.Red;
-                panel2.BackColor = Color.Red;
-                massage.Font = new Font("Arial", 12, FontStyle.Bold);
-                massage.ForeColor=Color.Red;
-                massage.Location=newerrorpoint;// set posssion for the label
-                massage.AutoSize = true;// ensure the label resizes to fit the text
 
-                this.Controls.Add(massage); // add the label to the form
 
             }
         }
@@ -84,13 +76,44 @@ namespace GradeApp
         private void user(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            panel1.BackColor=Color.Black;
         }
 
         private void entid(object sender, EventArgs e)
         {
             textBox2.Text = "";
-            panel2.BackColor = Color.Black; 
+        }
+
+        private void userlogenter(object sender, EventArgs e)
+        {
+            button2.BackColor = Color.FromArgb(77, 95, 203);
+        }
+
+        private void usermouseleave(object sender, EventArgs e)
+        {
+            button2.BackColor = Color.FromArgb(94, 114, 228);
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 14; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel3.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel3.Region = new Region(path);
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

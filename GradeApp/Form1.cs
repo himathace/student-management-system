@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace GradeApp
@@ -32,17 +34,7 @@ namespace GradeApp
             }
             else
             {
-                Label massage = new Label(); // create a new label
-                Point newerrorpoint = new Point(70, 450);
-                massage.Text = "invalid username or password";
-                panel1.BackColor = Color.Red;
-                panel2.BackColor = Color.Red;
-                massage.Font = new Font("Arial", 10, FontStyle.Bold);
-                massage.ForeColor = Color.Red;
-                massage.Location = newerrorpoint;// set posssion for the label
-                massage.AutoSize = true;// ensure the label resizes to fit the text
-
-                this.Controls.Add(massage); // add the label to the form
+                MessageBox.Show("invalid");
 
             }
         }
@@ -72,7 +64,6 @@ namespace GradeApp
         private void input(object sender, EventArgs e) // when user click on text box
         {
             textBox1.Text = "";
-            panel1.BackColor = Color.Black;
             
         }
 
@@ -80,12 +71,49 @@ namespace GradeApp
         {
             textBox2.Text = "";
             textBox2.UseSystemPasswordChar = true;// show password as dots
-            panel2.BackColor = Color.Black;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel3.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel3.Region = new Region(path);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginenter(object sender, EventArgs e)
+        {
+            button1.BackColor = Color.FromArgb(77, 95, 203);
+        }
+
+        private void loginleave(object sender, EventArgs e)
+        {
+            button1.BackColor = Color.FromArgb(94, 114, 228);
         }
     }
 }
