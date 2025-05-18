@@ -194,13 +194,13 @@ namespace GradeApp
 
                 
                 Panel gradepanel = new Panel();
-                gradepanel.Location = new Point(20, 137);
+                gradepanel.Location = new Point(22, 137);
                 gradepanel.BackColor = Color.White; 
 
                 int panheight = 45;
                 while (reader.Read())//iterate through all rows
                 {
-                    gradepanel.Size = new Size(747, panheight);
+                    gradepanel.Size = new Size(560, panheight);
 
                     string coursename = reader["course"].ToString();
                     string studentsgrade = reader["grade"].ToString();
@@ -330,12 +330,21 @@ namespace GradeApp
 
             int count = (int)find.ExecuteScalar();
 
-            Point newpoint = new Point(20, 198); // set the location of the first label
+            Point newpoint = new Point(4,4); // set the location of the first label
 
             if (count > 0)
             {
                 SqlCommand cmd = new SqlCommand("select course from course where id=@id", newconn);
                 cmd.Parameters.AddWithValue("@id", userid);
+
+                Size dashpanel = new Size(527, 30); // set the size for panel
+
+                Panel userdashb = new Panel(); // dinamcally create panel
+                userdashb.Location = new Point(32, 449);
+                userdashb.BackColor = Color.White;
+                userdashb.Size = dashpanel;
+                this.panel4.Controls.Add(userdashb);
+
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -344,18 +353,16 @@ namespace GradeApp
                 {
                     string coursename = reader["course"].ToString();
                     Label displaylabel = new Label();
-                    Label status = new Label();
                     displaylabel.Location = newpoint;
                     displaylabel.Text = coursename;
                     displaylabel.ForeColor = Color.Black;
-                    displaylabel.BackColor = Color.DarkGray;
-                    displaylabel.Size = new Size(480, 30);
-                    displaylabel.Font = new Font("Segoe UI", 16, FontStyle.Bold);
-                    this.panel4.Controls.Add(displaylabel);
-                    newpoint.Y += 40;
-
-
+                    displaylabel.Font = new Font("Segoe UI", 14, FontStyle.Regular);
+                    userdashb.Controls.Add(displaylabel); // add label to panel
+                    newpoint.Y += 27;  
+                    userdashb.Height += 20;
                 }
+
+
             }
             else
             {
@@ -373,13 +380,6 @@ namespace GradeApp
 
             newconn.Close();
 
-            Label dashmarks = new Label();
-            dashmarks.Location = new Point(newpoint.X, newpoint.Y + 10);
-            dashmarks.Text = "Marks";
-            dashmarks.ForeColor = Color.Black;
-            dashmarks.Font = new Font("Segoe UI", 10, FontStyle.Regular);
-            dashmarks.AutoSize = true;
-            this.panel4.Controls.Add(dashmarks);
 
 
 
@@ -389,35 +389,20 @@ namespace GradeApp
 
         private void panel9_Paint(object sender, PaintEventArgs e) // add rounded corners to the panel9
         {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel9.ClientRectangle;
+            int diameter = cornerRadius * 2;
 
-            int cornerRadius = 30; // Adjust the radius 
-            Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
 
-            Rectangle panelRect = panel9.ClientRectangle;
-            panelRect.Width -= 1; // Adjust for border
-            panelRect.Height -= 1;
-
-            using (GraphicsPath path = new GraphicsPath())
-            {
-                path.AddArc(panelRect.X, panelRect.Y, cornerRadius, cornerRadius, 180, 90); // Top-left corner
-                path.AddArc(panelRect.Right - cornerRadius, panelRect.Y, cornerRadius, cornerRadius, 270, 90); // Top-right corner
-                path.AddArc(panelRect.Right - cornerRadius, panelRect.Bottom - cornerRadius, cornerRadius, cornerRadius, 0, 90); // Bottom-right corner
-                path.AddArc(panelRect.X, panelRect.Bottom - cornerRadius, cornerRadius, cornerRadius, 90, 90); // Bottom-left corner
-                path.CloseFigure();
-
-
-                using (Brush brush = new SolidBrush(panel9.BackColor))
-                {
-                    g.FillPath(brush, path); // Fill the panel with its background color
-                }
-
-                using (Pen pen = new Pen(Color.Black, 1)) // Optional: Add a border
-                {
-                    g.DrawPath(pen, path);
-                }
-
-            }
+            // Apply the rounded rectangle as the panel's region
+            panel9.Region = new Region(path);
         }
 
         private void panel18_Paint(object sender, PaintEventArgs e) // add rounded border for panel18(search button panel)
@@ -469,6 +454,183 @@ namespace GradeApp
         private void label21_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel22_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel22.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel22.Region = new Region(path);
+        }
+
+        private void label39_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel21_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel21.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel21.Region = new Region(path);
+        }
+
+        private void label41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel23_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel23.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel23.Region = new Region(path);
+        }
+
+        private void panel24_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel24.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel24.Region = new Region(path);
+        }
+
+        private void panel25_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel25.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel25.Region = new Region(path);
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel5.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel5.Region = new Region(path);
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel6.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel6.Region = new Region(path);
+        }
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel7.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel7.Region = new Region(path);
+        }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+            int cornerRadius = 15; // Adjust the radius as needed
+            GraphicsPath path = new GraphicsPath();
+            Rectangle bounds = panel8.ClientRectangle;
+            int diameter = cornerRadius * 2;
+
+            // Create rounded rectangle path
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90); // Top-left corner
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90); // Top-right corner
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90); // Bottom-right corner
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90); // Bottom-left corner
+            path.CloseAllFigures();
+
+            // Apply the rounded rectangle as the panel's region
+            panel8.Region = new Region(path);
         }
     }
 }

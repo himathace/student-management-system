@@ -213,9 +213,9 @@ namespace GradeApp
             dataGridView2.RowHeadersVisible = false; // remove row header
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) // clear userinput fields
         {
-            // clear userinput fields
+
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
             textBox3.Text = string.Empty;
@@ -225,22 +225,47 @@ namespace GradeApp
             dateTimePicker1.Text = string.Empty;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e) // userdate user information
         {
-            // update user information in addstudents table
-            con.Open();
-            SqlCommand update = new SqlCommand("update addstudents set username=@username,telephone=@telephone,address=@address,gender=@gender,department=@department,dob=@dob where id=@id", con);
-            update.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
-            update.Parameters.AddWithValue("@username", textBox1.Text);
-            update.Parameters.AddWithValue("@telephone", textBox3.Text);
-            update.Parameters.AddWithValue("@address", textBox4.Text);
-            update.Parameters.AddWithValue("@gender", comboBox1.Text);
-            update.Parameters.AddWithValue("@department", comboBox3.Text);
-            update.Parameters.AddWithValue("@dob", dateTimePicker1.Value);
-            update.ExecuteNonQuery();
-            con.Close();
-            MessageBox.Show("Data Updated Successfully");
-            binddata();
+            try
+            {
+                con.Open();
+                SqlCommand update = new SqlCommand("update addstudents set username=@username,telephone=@telephone,address=@address,gender=@gender,department=@department,dob=@dob where id=@id", con);
+                update.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
+                update.Parameters.AddWithValue("@username", textBox1.Text);
+                update.Parameters.AddWithValue("@telephone", textBox3.Text);
+                update.Parameters.AddWithValue("@address", textBox4.Text);
+                update.Parameters.AddWithValue("@gender", comboBox1.Text);
+                update.Parameters.AddWithValue("@department", comboBox3.Text);
+                update.Parameters.AddWithValue("@dob", dateTimePicker1.Value);
+
+                SqlCommand check = new SqlCommand("select count (*) from addstudents where id=@id", con);
+                check.Parameters.AddWithValue("@id",int.Parse(textBox2.Text));
+                int checknum=(int)check.ExecuteScalar();
+                if (checknum > 0)
+                {
+                    update.ExecuteNonQuery();
+                    MessageBox.Show("Data Updated Successfully");
+                }
+                else
+                {
+                    throw new Exception("ID Not Found!");
+                }
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show("wrong data type");
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+                binddata();
+            }
 
         }
 
