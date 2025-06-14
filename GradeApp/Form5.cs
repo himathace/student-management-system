@@ -62,9 +62,18 @@ namespace GradeApp
 
         private void Form5_Load(object sender, EventArgs e)
         {
-
         }
 
-        
+        private void panle1_resize(object sender, EventArgs e)
+        {
+            if(this.WindowState == FormWindowState.Maximized)
+            {
+                
+            }
+            else if(this.WindowState != FormWindowState.Maximized) 
+            {
+
+            }
+        }
     }
 }

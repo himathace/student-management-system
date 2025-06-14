@@ -322,7 +322,28 @@ namespace GradeApp
 
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
+            // display name in dashboard
             label25.Text = username;
+
+            // display gpa
+            newconn.Open();
+            SqlCommand displaygpa= new SqlCommand("select gpa from addstudents where id=@user",newconn);
+            displaygpa.Parameters.AddWithValue("user", userid);
+            object result=displaygpa.ExecuteScalar();
+            if (result != DBNull.Value) // check is reasulat is null
+            {
+                label32.Text= Convert.ToDouble(result).ToString("0.0"); // tostring method remove decimal point to always add decimal point
+            }
+            else
+            {
+                label32.Text = "0.0";
+
+            }
+            newconn.Close();
+            
+
+
+
             newconn.Open();
 
             SqlCommand find = new SqlCommand("select count(*) from course where id=@id", newconn);
@@ -337,10 +358,10 @@ namespace GradeApp
                 SqlCommand cmd = new SqlCommand("select course from course where id=@id", newconn);
                 cmd.Parameters.AddWithValue("@id", userid);
 
-                Size dashpanel = new Size(527, 30); // set the size for panel
+                Size dashpanel = new Size(660, 20); // set the size for panel
 
                 Panel userdashb = new Panel(); // dinamcally create panel
-                userdashb.Location = new Point(32, 449);
+                userdashb.Location = new Point(32, 439);
                 userdashb.BackColor = Color.White;
                 userdashb.Size = dashpanel;
                 this.panel4.Controls.Add(userdashb);
@@ -631,6 +652,11 @@ namespace GradeApp
 
             // Apply the rounded rectangle as the panel's region
             panel8.Region = new Region(path);
+        }
+
+        private void clickprofile(object sender, EventArgs e)
+        {
+            panel11.Show();
         }
     }
 }

@@ -14,11 +14,10 @@ namespace GradeApp
 {
     public partial class Form2 : Form
     {
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True"); // connect to databse studentmanagement
         public Form2()
         {
             InitializeComponent();
-            
-
         }
 
         private void showpanel(Panel paneltoshow)
@@ -26,7 +25,6 @@ namespace GradeApp
             paneltoshow.Visible = true;
         }
 
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-5ETB5FH;Initial Catalog=studentmanagement;Integrated Security=True"); // connect to databse studentmanagement
         private void Form2_Load(object sender, EventArgs e)
         {
             binddata();
@@ -132,7 +130,7 @@ namespace GradeApp
                 if(textBox3.Text.Length != 10 )
                 {
                     label12.ForeColor= Color.Red;
-                    throw new Exception("Phone number should less than 10 characters");
+                    throw new Exception("Invalid phone number");
                 }
                 else
                 {
@@ -180,9 +178,19 @@ namespace GradeApp
                     cmd.Parameters.AddWithValue("@dob", dateTimePicker1.Value);
                 }
 
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Data Inserted Successfully");
+                SqlCommand check = new SqlCommand("select count (*) from addstudents where id=@id or username=@username", con);
+                check.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
+                check.Parameters.AddWithValue("@username",textBox1.Text);
+                int checknum = (int)check.ExecuteScalar();
+                if(checknum > 0)
+                {
+                    throw new Exception("Data alrady exist");
+                }
+                else
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Data Inserted Successfully");
+                }
 
             }
             catch(FormatException) 
@@ -271,14 +279,48 @@ namespace GradeApp
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //delete userinformation in addstudents table
-            con.Open();
-            SqlCommand delete = new SqlCommand("delete from addstudents where id=@id", con);
-            delete.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
-            delete.ExecuteNonQuery();
-            con.Close();
-            MessageBox.Show("Data Deleted Successfully");
-            binddata();
+            try
+            {
+                con.Open();
+                if (string.IsNullOrWhiteSpace(textBox2.Text))
+                {
+                    label6.ForeColor=Color.Red;
+                    throw new Exception("ID cannot be empty");
+                }
+                else
+                {
+                    SqlCommand delete = new SqlCommand("delete from addstudents where id=@id", con);
+                    delete.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
+
+                    SqlCommand check = new SqlCommand("select count (*) from addstudents where id=@id", con);
+                    check.Parameters.AddWithValue("@id", int.Parse(textBox2.Text));
+                    int checknum = (int)check.ExecuteScalar();
+                    if(checknum > 0)
+                    {
+                        delete.ExecuteNonQuery();
+                        MessageBox.Show("Data Deleted Successfully");
+                    }
+                    else
+                    {
+                        throw new Exception("ID not found");
+                    }
+                }
+
+
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("invalid datatype");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+                binddata();
+            }
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -787,5 +829,34 @@ namespace GradeApp
             // Apply the rounded rectangle as the panel's region
             panel17.Region = new Region(path);
         }
+        void sortbinddata(string name)
+        {
+            
+            string searchxx = $"select username,id,{name} from addstudents";
+            SqlDataAdapter sdaa = new SqlDataAdapter(searchxx,con);
+            DataTable dtt = new DataTable();
+            sdaa.Fill(dtt);
+            dataGridView2.DataSource = dtt;
+            dataGridView2.RowHeadersVisible = false; //remove row header(first select row in datagridview)  
+        }
+
+        private void sorting(object sender, EventArgs e)
+        {
+            if (comboBox2.Text == "department")
+            {
+                sortbinddata(comboBox2.Text);
+            }
+            else if (comboBox2.Text == "gender")
+            {
+                sortbinddata(comboBox2.Text);
+            }
+            else
+            {
+                sortbinddata(comboBox2.Text);
+            }
+        }
+
+
+
     }
 }
