@@ -5,7 +5,7 @@
 
 This is a Student Management System built using C# and Windows Forms (WinForms). The main purpose of the project is to build a student management system that manage students and there course work more efficiently It allows administrators to manage student records easily through a graphical user interface. The application supports CRUD (Create, Read, Update, Delete) operations for student data and ensures a smooth and user-friendly experience.
 
-## 🔧 Core Functionality
+> ##  Core Functionality
 - Role base authentication
 
 - mordern dashboard
@@ -24,7 +24,7 @@ This is a Student Management System built using C# and Windows Forms (WinForms).
 
 - Data persistence using sql server
 
-## 🛠️ Technologies Used
+> ## Technologies Used
 - C#
 
 - .NET Framework / .NET 9.0
@@ -33,7 +33,7 @@ This is a Student Management System built using C# and Windows Forms (WinForms).
 
 - Microsoft sql server
 
-## 🚀 Getting Started
+> ##  Getting Started
 - Clone the repository and open it in Visual Studio to get started.  Make sure all dependencies are installed and the database is properly set up before running the application.
 ```
 git clone https://github.com/himathace/student-management-system.git
