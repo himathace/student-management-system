@@ -1,5 +1,6 @@
-![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
+![.NET](https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original.svg)
+![C#](https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg)
+![firebase](https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-plain.svg)
 
 > #  Student Management System
 
@@ -40,8 +41,8 @@ git clone https://github.com/himathace/student-management-system.git
 ```
 
 ## ui screenshots
-<img width="546" height="501" alt="Screenshot 2025-07-14 144958" src="https://github.com/user-attachments/assets/042d00b1-a077-44e6-b38d-d5ecef0a60e4" />
-<img width="498" height="633" alt="Screenshot 2025-07-14 145123" src="https://github.com/user-attachments/assets/b9147f2f-b230-45d9-b83b-4bb108c2cc1d" />
-<img width="503" height="608" alt="Screenshot 2025-07-14 145357" src="https://github.com/user-attachments/assets/9c176461-e62e-4365-9b5c-665e8a1a5ee6" />
+<img width="600" height="500" alt="Screenshot 2025-07-14 144958" src="https://github.com/user-attachments/assets/042d00b1-a077-44e6-b38d-d5ecef0a60e4" />
+<img width="600" height="500" alt="Screenshot 2025-07-14 145123" src="https://github.com/user-attachments/assets/b9147f2f-b230-45d9-b83b-4bb108c2cc1d" />
+<img width="600" height="500" alt="Screenshot 2025-07-14 145357" src="https://github.com/user-attachments/assets/9c176461-e62e-4365-9b5c-665e8a1a5ee6" />
 
 
